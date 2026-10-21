@@ -12124,7 +12124,7 @@ public class AppMain
 
 		public ushort stack_num;
 
-		public readonly GMS_DECO_PRIM_DRAW_STACK[] stack = New<GMS_DECO_PRIM_DRAW_STACK>(128);
+		public readonly GMS_DECO_PRIM_DRAW_STACK[] stack = New<GMS_DECO_PRIM_DRAW_STACK>(256);
 	}
 
 	public class AOS_TEXTURE : IClearable
@@ -85937,6 +85937,10 @@ public class AppMain
 		{
 			return;
 		}
+		if (model_index < 0 || model_index >= gmDecoDataGetInfo().tvx_model_data.Length)
+		{
+			return;
+		}
 		if (gmDecoDataGetInfo().tvx_model_data[model_index] == null)
 		{
 			AmbChunk data = (AmbChunk)amBindGet(gmDecoDataGetInfo().tvx_model, model_index);
@@ -85957,6 +85961,10 @@ public class AppMain
 					array[i].tex = model_tex;
 					array[i].tex_id = num4;
 					array[i].command = command;
+					if (array[i].stack_num >= array[i].stack.Length)
+					{
+						return;
+					}
 					array[i].all_vtx_num += (ushort)num3;
 					gMS_DECO_PRIM_DRAW_STACK = array[i].stack[array[i].stack_num];
 					gMS_DECO_PRIM_DRAW_STACK.vtx = AoTvxGetVertex(file, num2);

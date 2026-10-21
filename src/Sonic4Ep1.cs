@@ -110,7 +110,8 @@ public class Sonic4Ep1 : Game
     private bool jumpHeld;
     // Hoja nueva (512x512): aro gris con flechas, aro gris liso, bola brillante.
     private static readonly Rectangle SrcStickRing = new Rectangle(0, 0, 256, 256);
-    private static readonly Rectangle SrcJumpRing = new Rectangle(256, 256, 256, 256);
+    // Aro plano gris (cuadrante superior derecho de pad_hq.png), no el amarillo iluminado.
+    private static readonly Rectangle SrcJumpRing = new Rectangle(256, 0, 256, 256);
     private static readonly Rectangle SrcBall = new Rectangle(12, 322, 176, 176);
     // Diagnóstico de toques (se ve arriba a la izquierda). Poner en false cuando ya no haga falta.
     private const bool DEBUG_TOUCH = false;
